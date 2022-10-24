@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "server"
+version = "0.1.0"
+description = ""
+authors = ["Makar Bialiauski <bialiauski@protonmail.com>"]
+packages = [{include = "app"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+aiohttp = "^3.8.3"
+python-dotenv = "^0.21.0"
+aiohttp-pydantic = "^1.12.2"
+asyncpg = "^0.26.0"
+greenlet = "^1.1.3.post0"
+sqlmodel = "^0.0.8"
+aiohttp_cors = "^0.7.0"
+
+[tool.poetry.group.dev.dependencies]
+autopep8 = "^1.7.0"
+
+[tool.poetry.scripts]
+app = "app:start_app"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

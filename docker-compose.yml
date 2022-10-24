@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  server:
+    build: ./server
+    container_name: server
+    command: poetry run app
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+    external_links:
+      - ${POSTGRES_HOST}:${POSTGRES_HOST}
+
+  client:
+    build: ./client
+    command: pnpm run dev --port ${CLIENT_PORT}
+    restart: always
+    ports:
+      - ${CLIENT_PORT}:${CLIENT_PORT}
+
+  database:
+    image: postgres
+    container_name: ${POSTGRES_HOST}
+    env_file:
+      - .env
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
